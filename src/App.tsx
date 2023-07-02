@@ -7,15 +7,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import ChatListItem from "./components/ChatListItem";
 import ChatIntro from "./components/ChatIntro";
 import ChatWindow from "./components/ChatWindow";
-import { ChatList } from "./types";
+import { IChatList } from "./types";
 
-interface IChatObj {
-  chatId: number;
-}
+
 
 
 function App() {
-  const [chatList, setChatList] = useState<ChatList[]>([
+  const [chatList, setChatList] = useState<IChatList[]>([
     {
       chatId: 1,
       title: "Fulano de tal",
@@ -23,21 +21,21 @@ function App() {
     },
     {
       chatId: 2,
-      title: "Fulano de tal",
+      title: "Beltrano",
       image: "https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg",
     },
     {
       chatId: 3,
-      title: "Fulano de tal",
+      title: "Coisinha",
       image: "https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg",
     },
     {
       chatId: 4,
-      title: "Fulano de tal",
+      title: "Adolfo",
       image: "https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg",
     },
   ]);
-  const [activeChat, setActiveChat] = useState<ChatList | null>(null);
+  const [activeChat, setActiveChat] = useState<IChatList | null>(null);
   return (
     <>
       <div className="app-window">
@@ -69,7 +67,7 @@ function App() {
           </div>
           <div className="chatlist">
             {chatList.map((item) => (
-              <ChatListItem key={item.chatId} {...item} click={() => setActiveChat(item)} />
+              <ChatListItem key={item.chatId} {...item} active={activeChat?.chatId === item.chatId} click={() => setActiveChat(item)} />
             ))}
           </div>
         </div>

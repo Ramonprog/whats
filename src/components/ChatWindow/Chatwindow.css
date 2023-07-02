@@ -1,0 +1,92 @@
+.chatWindow{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.window--header{
+    height: 60px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.window--headerinfo{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.window--avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 15px;
+}
+
+.window-name{
+    font-size: 17px;
+    color: #181818;
+}
+
+.window--headerbtn{
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.window--btn{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.window--body{
+    flex-direction: 1;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #e5ddd5;
+    background-size: cover;
+    background-position: center;
+    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+}
+
+.window--footer{
+    height: 62px;
+    display: flex;
+    align-items: center;
+}
+
+.window--left{
+    display: flex;
+    margin: 0 15px;
+}
+
+.window--center{
+    flex: 1;
+}
+
+.window-input{
+    width: 100%;
+    height: 40px;
+    border: 0;
+    outline: none;
+    background-color: #fff;
+    border-radius: 20px;
+    font-size: 15px;
+    color: #4a4a4a;
+    padding-left: 15px;
+}
+
+.window--right{
+    display: flex;
+    margin: 0 15px;
+}
+

@@ -1,4 +1,4 @@
-export type ChatList = {
+export interface IChatList  {
     chatId: number;
     title: string;
     image: string;
