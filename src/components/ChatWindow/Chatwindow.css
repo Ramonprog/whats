@@ -49,7 +49,7 @@
 }
 
 .window--body{
-    flex-direction: 1;
+    flex: 1;
     height: 100%;
     overflow-y: auto;
     background-color: #e5ddd5;
@@ -90,3 +90,11 @@
     margin: 0 15px;
 }
 
+aside.EmojiPickerReact.epr-main{
+    background-color: transparent;
+    width: 100% !important;
+}
+
+.EmojiPickerReact li.epr-emoji-category>.epr-emoji-category-label{
+    background-color: transparent !important;
+}
