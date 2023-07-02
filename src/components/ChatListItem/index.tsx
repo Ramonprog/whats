@@ -1,8 +1,9 @@
+import { ChatList } from "../../types";
 import "./chatListItem.css";
 
-const ChatListItem = () => {
+const ChatListItem = ({click}: ChatList) => {
   return (
-    <div className="chatListItem">
+    <div className="chatListItem" onClick={click}>
       <img className="chat--avatar" src="https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg" alt="" />
       <div className="chat--lines">
         <div className="chat--line">
