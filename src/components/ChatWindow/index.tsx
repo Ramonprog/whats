@@ -30,6 +30,7 @@ const ChatWindow = () => {
 
   const handleMic = () => {
     if (recognition !== undefined) {
+      recognition.lang = "pt-BR"
       recognition.onstart = () => {
         setListening(true);
       };
