@@ -6,16 +6,43 @@ import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt
 import SendIcon from "@mui/icons-material/Send";
 import MicNoneIcon from "@mui/icons-material/MicNone";
 import EmojiPicker from "emoji-picker-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import MessageItem from "../MessageItem";
+import { IMsgList, IUser } from "../../types";
 
-const ChatWindow = () => {
+interface IChatwindow {
+  user: IUser[];
+}
+
+const ChatWindow = ({ user }: IChatwindow) => {
   const [emojiOpen, setEmojiOpen] = useState(false);
   const [text, setText] = useState("");
-  const [listening, setListening] = useState(false)
+  const [listening, setListening] = useState(false);
+  const [msgList, setMsgList] = useState<IMsgList[]>([
+    { author: 1, message: "Primeira mensagem" },
+    { author: 1, message: "Segunda mensagem" },
+    { author: 2, message: "Segunda mensagem" },
+    { author: 1, message: "Primeira mensagem" },
+    { author: 1, message: "Segunda mensagem" },
+    { author: 2, message: "Segunda mensagem" },
+    { author: 1, message: "Primeira mensagem" },
+    { author: 1, message: "Segunda mensagem" },
+    { author: 2, message: "Segunda mensagem" },
+    { author: 1, message: "Primeira mensagem" },
+    { author: 1, message: "Segunda mensagem" },
+    { author: 2, message: "Segunda mensagem" },
+    { author: 1, message: "Primeira mensagem" },
+    { author: 1, message: "Segunda mensagem" },
+    { author: 2, message: "Segunda mensagem" },
+    { author: 1, message: "Primeira mensagem" },
+    { author: 1, message: "Segunda mensagem" },
+    { author: 2, message: "Segunda mensagem" },
+  ]);
 
   let recognition: SpeechRecognition | undefined;
-  let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  
+  let SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
   if (SpeechRecognition !== undefined) {
     recognition = new SpeechRecognition();
   }
@@ -27,10 +54,9 @@ const ChatWindow = () => {
 
   const handleSend = () => {};
 
-
   const handleMic = () => {
     if (recognition !== undefined) {
-      recognition.lang = "pt-BR"
+      recognition.lang = "pt-BR";
       recognition.onstart = () => {
         setListening(true);
       };
@@ -43,6 +69,16 @@ const ChatWindow = () => {
       recognition.start();
     }
   };
+
+  const body = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (body.current) {
+      if (body.current.scrollHeight > body.current.offsetHeight) {
+        body.current.scrollTop = body.current.scrollHeight - body.current.offsetHeight
+      }
+    }
+  }, [msgList]);
 
   return (
     <div className="chatWindow">
@@ -68,8 +104,12 @@ const ChatWindow = () => {
           </div>
         </div>
       </div>
-      <div className="window--body">.</div>
-      <div className="window--emojiarea">
+      <div className="window--body" ref={body}>
+        {msgList.map((item, index) => (
+          <MessageItem key={index} data={item} user={user} />
+        ))}
+      </div>
+      <div className="window--emojiarea" >
         {emojiOpen && (
           <div className="emoji-picker-container">
             <EmojiPicker
@@ -103,7 +143,10 @@ const ChatWindow = () => {
             {text ? (
               <SendIcon style={{ color: "#919191" }} />
             ) : (
-              <MicNoneIcon onClick={handleMic} style={{ color: listening ? '#126ece': "#919191" }} />
+              <MicNoneIcon
+                onClick={handleMic}
+                style={{ color: listening ? "#126ece" : "#919191" }}
+              />
             )}
           </div>
         </div>

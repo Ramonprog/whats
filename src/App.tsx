@@ -7,7 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ChatListItem from "./components/ChatListItem";
 import ChatIntro from "./components/ChatIntro";
 import ChatWindow from "./components/ChatWindow";
-import { IChatList } from "./types";
+import { IChatList, IUser } from "./types";
 
 
 
@@ -36,6 +36,11 @@ function App() {
     },
   ]);
   const [activeChat, setActiveChat] = useState<IChatList | null>(null);
+  const [user, setUser] = useState<IUser>({
+    id: 2,
+    avatar:'https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg',
+    name:'ramon'
+  })
   return (
     <>
       <div className="app-window">
@@ -43,7 +48,7 @@ function App() {
           <header>
             <img
               className="header-avatar"
-              src="https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg"
+              src={user.avatar}
               alt="avatar"
             />
             <div className="header-buttons">
@@ -72,7 +77,7 @@ function App() {
           </div>
         </div>
         <div className="contentarea">
-        {activeChat && activeChat.chatId !== undefined && <ChatWindow />}
+        {activeChat && activeChat.chatId !== undefined && <ChatWindow user={user}/>}
   {!activeChat && <ChatIntro />}
         </div>
       </div>
