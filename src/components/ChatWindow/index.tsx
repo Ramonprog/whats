@@ -11,7 +11,7 @@ import MessageItem from "../MessageItem";
 import { IMsgList, IUser } from "../../types";
 
 interface IChatwindow {
-  user: IUser[];
+  user: IUser;
 }
 
 const ChatWindow = ({ user }: IChatwindow) => {

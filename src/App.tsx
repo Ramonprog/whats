@@ -8,11 +8,13 @@ import ChatListItem from "./components/ChatListItem";
 import ChatIntro from "./components/ChatIntro";
 import ChatWindow from "./components/ChatWindow";
 import { IChatList, IUser } from "./types";
+import NewChat from "./components/NewChat";
 
 
 
 
 function App() {
+  const [showNewChat, setShowNewChat] = useState(false)
   const [chatList, setChatList] = useState<IChatList[]>([
     {
       chatId: 1,
@@ -45,6 +47,7 @@ function App() {
     <>
       <div className="app-window">
         <div className="sidebar">
+          <NewChat showNewChat={showNewChat} setShowNewChat={setShowNewChat} user={user} chatList={chatList}/>
           <header>
             <img
               className="header-avatar"
@@ -54,7 +57,7 @@ function App() {
             <div className="header-buttons">
               <div className="header--btn">
                 <DonutLargeIcon style={{ color: "#919191" }} />
-                <ChatIcon style={{ color: "#919191", marginLeft: "8px" }} />
+                <ChatIcon onClick={() => setShowNewChat(true)} style={{ color: "#919191", marginLeft: "8px" }} />
                 <MoreVertIcon
                   style={{ color: "#919191", marginRight: "8px" }}
                 />

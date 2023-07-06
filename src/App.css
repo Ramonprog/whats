@@ -93,3 +93,7 @@ padding: 5px 15px;
 .contentarea{
  flex: 1;
 }
+
+svg {
+  cursor: pointer;
+}
